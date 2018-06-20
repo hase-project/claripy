@@ -14,7 +14,7 @@ class FullFrontend(ConstrainedFrontend):
         ConstrainedFrontend.__init__(self, **kwargs)
         self._track = track
         self._solver_backend = solver_backend
-        self.timeout = timeout if timeout is not None else 300000
+        self.timeout = timeout if timeout is not None else 5000
         self._tls = threading.local()
         self._to_add = [ ]
 

@@ -560,9 +560,13 @@ class BackendZ3(Backend):
         model = { }
         for m_f in z3_model:
             n = m_f.name()
-            m = m_f()
-            me = z3_model.eval(m)
-            model[n] = self._abstract_to_primitive(me.ctx.ctx, me.ast)
+            try:
+                m = m_f()
+                me = z3_model.eval(m)
+                model[n] = self._abstract_to_primitive(me.ctx.ctx, me.ast)
+            except:
+                # FIXME: but non-primitive should be a function instead of value
+                pass
 
         return model
 
